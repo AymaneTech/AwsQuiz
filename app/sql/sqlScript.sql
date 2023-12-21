@@ -18,3 +18,9 @@ CREATE TABLE answer
 
 alter table question
 add column questionDesc text;
+
+alter table answer
+change column answerID  ID int;
+
+alter table question
+    change column questionID  ID int;

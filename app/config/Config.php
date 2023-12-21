@@ -1,6 +1,6 @@
 <?php
 
 define ('HOST', 'mysql:host=localhost;');
-define ('DBNAME', 'dbname=opep_v3;');
+define ('DBNAME', 'dbname=awsquiz;');
 define ('USERNAME', 'root');
 define ('PASSWORD', '');

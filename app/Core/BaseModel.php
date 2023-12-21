@@ -2,10 +2,12 @@
 
 namespace App\Core;
 
+use App\Helpers\Functions;
+
 use PDO;
 use PDOException;
 
-class Model
+class BaseModel
 {
     private $tableName;
     private $columns = ["*"];
@@ -20,7 +22,7 @@ class Model
         $this->$property = $value;
     }
 
-    public function selectFromTable()
+    protected function fetchAll()
     {
         try {
             $columns = implode(',', $this->columns);
@@ -30,7 +32,9 @@ class Model
             echo("i am in model class =====> <br>" . $e->getMessage());
         }
     }
-    public function findByColumnName($columnName, $value){
+
+    protected function findByColumnName($columnName, $value)
+    {
         try {
             $columns = implode(',', $this->columns);
             $stmt = Database::connect()->prepare("SELECT {$columns} from {$this->tableName} where {$columnName} = :value");
@@ -39,6 +43,17 @@ class Model
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo "i am in model class ===> <br>" . $e->getMessage();
+        }
+    }
+
+    protected function fetchRandom()
+    {
+        try {
+            $columns = implode(',', $this->columns);
+            $stmt = Database::connect()->query("SELECT {$columns} from {$this->tableName} order by rand() limit 1");
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            die("i am in model class ===> <br>" . $e->getMessage());
         }
     }
 }
