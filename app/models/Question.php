@@ -22,7 +22,6 @@ class Question extends BaseModel
         return parent::fetchAll();
     }
     public function fetchRandomQuestion(){
-        parent::__set("columns", ["id","questionText"] );
         return parent::fetchRandom();
     }
 }

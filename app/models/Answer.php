@@ -8,7 +8,7 @@ class Answer extends BaseModel
     private $id;
     private $answerText;
     private $answerStatus;
-    private $questionFk;
+    private $question;
     public function __construct()
     {
         parent::__construct("answer");

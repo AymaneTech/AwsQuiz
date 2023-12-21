@@ -16,12 +16,10 @@ class BaseModel
     {
         $this->tableName = $tableName;
     }
-
     public function __set($property, $value)
     {
         $this->$property = $value;
     }
-
     protected function fetchAll()
     {
         try {
@@ -32,7 +30,6 @@ class BaseModel
             echo("i am in model class =====> <br>" . $e->getMessage());
         }
     }
-
     protected function findByColumnName($columnName, $value)
     {
         try {
@@ -45,7 +42,6 @@ class BaseModel
             echo "i am in model class ===> <br>" . $e->getMessage();
         }
     }
-
     protected function fetchRandom()
     {
         try {
