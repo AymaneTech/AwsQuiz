@@ -9,6 +9,7 @@ class Question extends BaseModel
     private $id;
     private $questionText;
     private $questionDesc;
+    private $answerArr;
     public function __construct()
     {
         parent::__construct("question");

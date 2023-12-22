@@ -1,9 +1,27 @@
 <?php
 
-namespace App\Controllers;
+//namespace App\Controllers;
 
-class contoller
-{
+//class contoller
+//{
 
-}
-echo "heelo from controller";
+//}
+
+?>
+    <div class="question">
+        <h2>this is response</h2>
+    </div>
+    <div class="answers">
+        <div class="item">
+            <p>hello</p>
+        </div>
+        <div class="item">
+            <p>hello</p>
+        </div>
+        <div class="item">
+            <p>hello</p>
+        </div>
+        <div class="item">
+            <p>hello</p>
+        </div>
+    </div>
