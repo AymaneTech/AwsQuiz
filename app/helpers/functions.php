@@ -6,7 +6,7 @@ class Functions
 {
     public static function dd($var){
         echo "<br>";
-        var_dump($var);
+        print_r($var);
         echo "<br>";
         die();
     }

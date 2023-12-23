@@ -13,9 +13,17 @@ class QuestionController
     {
         $this->questionObject = new Question();
     }
-
     public function prepareQuestion()
     {
-        return ($this->questionObject->fetchRandomQuestion());
+//        $this->questionObject = new Question();
+        $this->questionObject->fetchRandomQuestion();
+        $this->questionObject->fetchAnswers();
+        return  [
+            'questionID' => $this->questionObject->__get("questionID"),
+            'questionText' => $this->questionObject->__get("questionText"),
+            'questionDesc' => $this->questionObject->__get("questionDesc"),
+            'answerArray' => $this->questionObject->__get("answers"),
+        ];
     }
 }
+

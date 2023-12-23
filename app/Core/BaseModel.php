@@ -3,11 +3,11 @@
 namespace App\Core;
 
 use App\Helpers\Functions;
-
+use App\Core\Database;
 use PDO;
 use PDOException;
 
-class BaseModel
+abstract class BaseModel
 {
     private $tableName;
     private $columns = ["*"];
@@ -19,6 +19,9 @@ class BaseModel
     public function __set($property, $value)
     {
         $this->$property = $value;
+    }
+    public function __get($property){
+        return $this->$property;
     }
     protected function fetchAll()
     {
@@ -53,3 +56,4 @@ class BaseModel
         }
     }
 }
+

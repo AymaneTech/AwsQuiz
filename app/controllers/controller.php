@@ -1,18 +1,20 @@
 <?php
-
+session_start();
 
 require_once '../../vendor/autoload.php';
 use App\Helpers\Functions;
 use App\Controllers\QuestionController;
 
 
-if(isset($_POST["pseudoName"])){
-
-
+if(isset($_POST["takePseudoName"])){
+    $_SESSION["pseudoName"] = $_POST["pseudoName"];
+    header("location: ../../public/startgame.php");
+}
+if (isset($_POST["ok"])){
     $test = new QuestionController();
-    $data = (object)$test->prepareQuestion();
+    $data = json_encode($test->prepareQuestion());
     print_r($data);
-
-
-    echo "i'm here";
+}
+if (isset($_POST["answeredId"])){
+    echo "done ";
 }
