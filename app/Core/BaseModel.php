@@ -16,13 +16,17 @@ abstract class BaseModel
     {
         $this->tableName = $tableName;
     }
+
     public function __set($property, $value)
     {
         $this->$property = $value;
     }
-    public function __get($property){
+
+    public function __get($property)
+    {
         return $this->$property;
     }
+
     protected function fetchAll()
     {
         try {
@@ -33,6 +37,7 @@ abstract class BaseModel
             echo("i am in model class =====> <br>" . $e->getMessage());
         }
     }
+
     protected function findByColumnName($columnName, $value)
     {
         try {
@@ -45,6 +50,19 @@ abstract class BaseModel
             echo "i am in model class ===> <br>" . $e->getMessage();
         }
     }
+    protected function findCorrectAnswer($questionFk)
+    {
+        try {
+            $columns = implode(', ', $this->columns);
+            $stmt = Database::connect()->prepare("SELECT {$columns} FROM {$this->tableName} where questionFk = :questionFk and answerStatus = 1");
+            $stmt->bindParam(':questionFk', $questionFk);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }  catch (PDOException $e) {
+            echo "come and fix me in base model => ".$e->getMessage();
+        }
+    }
+
     protected function fetchRandom()
     {
         try {
@@ -55,5 +73,6 @@ abstract class BaseModel
             die("i am in model class ===> <br>" . $e->getMessage());
         }
     }
+
 }
 

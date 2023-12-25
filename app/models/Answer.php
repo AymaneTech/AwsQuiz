@@ -16,4 +16,8 @@ class Answer extends BaseModel
     public function fetchAllAnswers (){
         return parent::fetchAll();
     }
+    public function isCorrectAnswer($id){
+        parent::__set("columns" ,["ID", "answerStatus"]);
+        return parent::findCorrectAnswer($id);
+    }
 }

@@ -2,12 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require_once '../vendor/autoload.php';
-
-use App\Helpers\Functions;
-use App\Controllers\QuestionController;
-use App\Models\Question;
-
 ?>
 <!doctype html>
 <html lang="en">

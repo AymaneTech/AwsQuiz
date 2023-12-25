@@ -1,28 +1,46 @@
+
 const container = document.querySelector('#container');
-const nextQuestion = document.querySelector('#nextQuestion');
+const nextQuestionButton = document.querySelector('#nextQuestion');
 
 window.addEventListener('load', fetchQuestion);
 
-container.addEventListener('click', function (event){
-    if(event.target.id === 'nextQuestion'){
-        fetchQuestion();
-    }
-});
+nextQuestionButton.addEventListener('click', fetchQuestion);
+
 function fetchQuestion() {
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: `ok=1`
+        body: 'ok=1'
     };
-    fetch(`../App/Controllers/controller.php`, options)
-        .then(response => response.text())
-        .then(data => {
-            let object = (JSON.parse(data));
-            console.log(object);
 
+    fetch('../App/Controllers/controller.php', options)
+        .then(handleResponse)
+        .then(displayQuestion)
+        .catch(handleError);
+}
+
+function handleResponse(response) {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text();
+}
+function displayQuestion(data) {
+    if (data) {
+        const object = JSON.parse(data);
+        console.log(object);
+        if (object.status && object.status === 'game_over') {
+            container.innerHTML = "";
             container.innerHTML = `
+            <div class="text-center text-xl bg-green-300">
+                <h1 class="title">Score</h1>
+                <div class="score"></div>
+
+            </div>`;
+        }
+        container.innerHTML = `
            <div class="header flex justify-between items-center p-4">
     <div class="logo">
         <img class="w-12 h-12" src="../App/Views/assets/img/logo.png" alt="page logo">
@@ -51,32 +69,35 @@ function fetchQuestion() {
 </div>
 
 <div class="answers-items flex flex-wrap justify-between p-4">
-    <div onclick="questionAnswered(${object.answerArray[0].ID})" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
+    <div onclick="questionAnswered(${object.answerArray[0].ID}, ${object.questionID}, 0)" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
         <h3 class="answerContent">
         ${object.answerArray[0].answerText}
         </h3>
     </div>
-    <div onclick="questionAnswered(${object.answerArray[1].ID})" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
+    <div onclick="questionAnswered(${object.answerArray[1].ID}, ${object.questionID}, 1)" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
         <h3 class="answerContent">
         ${object.answerArray[1].answerText}
         </h3>
     </div>
-    <div onclick="questionAnswered(${object.answerArray[2].ID})" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
+    <div onclick="questionAnswered(${object.answerArray[2].ID}, ${object.questionID}, 2)" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
         <h3 class="answerContent">
         ${object.answerArray[2].answerText}
         </h3>
     </div>
-    <div onclick="questionAnswered(${object.answerArray[3].ID})" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
+    <div onclick="questionAnswered(${object.answerArray[3].ID}, ${object.questionID}, 3)" id="answerId" class="answer-item bg-[#7c3aed] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5">
         <h3 class="answerContent">
             ${object.answerArray[3].answerText}
         </h3>
-    </div>   
+    </div>
 </div>
-`;
-        })
-        .catch(error => console.error('Error:', error));
+        `;
+    }
 }
 
+function handleError(error) {
+    console.error('Error:', error);
+}
 window.onbeforeunload = (event) => {
     event.preventDefault();
-}
+};
+

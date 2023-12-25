@@ -38,6 +38,7 @@ class Question extends BaseModel
     }
     public function fetchAnswers(){
         parent::__construct("answer");
+        parent::__set("columns", ["ID", "answerText", "questionFk"]);
         $this->answers = $this->findByColumnName("questionFK", $this->questionID);
     }
 }
