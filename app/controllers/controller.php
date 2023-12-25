@@ -18,12 +18,13 @@ if (!isset($_SESSION["incorrectAnswers"])){
 }
 if (isset($_POST["takePseudoName"])) {
     $_SESSION["pseudoName"] = $_POST["pseudoName"];
-    header("Location: ./startgame.php");
+    header("Location: ../../public/startgame.php");
 }
 if (isset($_POST["ok"])) {
     if ($_SESSION["count"] >= 10) {
         $response = ["status" => "game_over",
                     "score" => $_SESSION["points"],
+                    "pseudoName" => $_SESSION["pseudoName"],
                     "incorrectAnswers" => $_SESSION
             ];
         echo json_encode($response);
@@ -31,19 +32,21 @@ if (isset($_POST["ok"])) {
         exit();
     }
     $_SESSION["count"] += 1;
-    $test = new QuestionController();
-    $response = $test->prepareQuestion();
+    $QuestionController = new QuestionController();
+    $response = $QuestionController->prepareQuestion();
+    $response = ["counter" => $_SESSION["count"]] + $response;
+
+
     echo json_encode($response);
 }
 if (isset($_POST["answeredId"])) {
     $object = new AnswerController();
     $result = $object->isCorrectAnswer($_POST["questionFk"], $_POST["answeredId"]);
-    echo "counter is => " . $_SESSION["count"];
     if ($result) {
-        echo "  wrong status => ". 1;
+        echo 1;
         $_SESSION["points"] += 10;
     } else {
-        echo "  ||  wrong status => ". 0;
+        echo 0;
         $_SESSION["incorrectAnswers"] = $_POST["questionFk"];
     }
 }

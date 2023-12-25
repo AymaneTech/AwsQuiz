@@ -15,25 +15,13 @@ function questionAnswered(id, questionId) {
         .then(response => response.text())
         .then(response => {
             console.log(response)
+                let Nothification = new Notyf();
             if (response === "1") {
-                console.log("good");
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                });
+                Nothification.success('Correct Answer');
             } else {
-                console.log("bad");
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Something went wrong!",
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                });
+                Nothification.error('Incorrect Answer');
             }
         })
         .catch(error => console.error('Error:', error));
     fetchQuestion();
-    console.log("aymane ", counter);
 }
