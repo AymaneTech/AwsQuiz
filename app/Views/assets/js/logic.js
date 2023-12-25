@@ -17,10 +17,20 @@ function questionAnswered(id, questionId) {
             console.log(response)
             if (response === "1") {
                 console.log("good");
-                // alert("correct answer")
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
             } else {
-                // alert("wrong answer")
                 console.log("bad");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
             }
         })
         .catch(error => console.error('Error:', error));

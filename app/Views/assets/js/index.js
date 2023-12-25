@@ -20,7 +20,6 @@ function fetchQuestion() {
         .then(displayQuestion)
         .catch(handleError);
 }
-
 function handleResponse(response) {
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -32,11 +31,14 @@ function displayQuestion(data) {
         const object = JSON.parse(data);
         console.log(object);
         if (object.status && object.status === 'game_over') {
+            console.log(object);
             container.innerHTML = "";
             container.innerHTML = `
             <div class="text-center text-xl bg-green-300">
                 <h1 class="title">Score</h1>
-                <div class="score"></div>
+                <div class="score">
+                <h3>${object.score}</h3>
+            </div>
 
             </div>`;
         }
