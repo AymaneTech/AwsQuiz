@@ -3,7 +3,6 @@ let counter = 0;
 
 function questionAnswered(id, questionId) {
     counter++;
-
     const option = {
         method: 'post',
         headers: {

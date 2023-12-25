@@ -8,14 +8,12 @@ use App\Helpers\Functions;
 class QuestionController
 {
     private $questionObject;
-
     public function __construct()
     {
         $this->questionObject = new Question();
     }
     public function prepareQuestion()
     {
-//        $this->questionObject = new Question();
         $this->questionObject->fetchRandomQuestion();
         $this->questionObject->fetchAnswers();
         return  [

@@ -35,8 +35,6 @@ if (isset($_POST["ok"])) {
     $QuestionController = new QuestionController();
     $response = $QuestionController->prepareQuestion();
     $response = ["counter" => $_SESSION["count"]] + $response;
-
-
     echo json_encode($response);
 }
 if (isset($_POST["answeredId"])) {

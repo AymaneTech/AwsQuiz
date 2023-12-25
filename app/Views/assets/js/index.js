@@ -13,7 +13,6 @@ function fetchQuestion() {
         },
         body: 'ok=1'
     };
-
     fetch('../App/Controllers/controller.php', options)
         .then(handleResponse)
         .then(displayQuestion)
@@ -90,7 +89,6 @@ function displayQuestion(data) {
         document.querySelector("#restart").addEventListener("click", fetchQuestion);
     }
 }
-
 function handleError(error) {
     console.error('Error asahbi ');
 }
