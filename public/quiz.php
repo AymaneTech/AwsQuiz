@@ -17,11 +17,10 @@
 <body>
 <section id="container" class="container h-[100vh] flex flex-col justify-between align-center">
 
-
 </section>
-<script src="../App/Views/assets/js/index.js"></script>
-<script src="../App/Views/assets/js/logic.js"></script>
-<script src="../App/Views/assets/js/timer.js"></script>
+    <script src="../App/Views/assets/js/index.js"></script>
+    <script src="../App/Views/assets/js/logic.js"></script>
+    <script src="../App/Views/assets/js/timer.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.2/dist/sweetalert2.all.min.js"></script>

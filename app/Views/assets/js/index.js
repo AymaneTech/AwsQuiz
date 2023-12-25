@@ -1,10 +1,7 @@
 const container = document.querySelector('#container');
 const nextQuestionButton = document.querySelector('#nextQuestion');
-
-window.addEventListener('load', fetchQuestion);
-
-nextQuestionButton.addEventListener('click', fetchQuestion);
-
+fetchQuestion();
+// window.addEventListener('load', fetchQuestion);
 function fetchQuestion() {
     const options = {
         method: 'POST',
@@ -18,14 +15,12 @@ function fetchQuestion() {
         .then(displayQuestion)
         .catch(handleError);
 }
-
 function handleResponse(response) {
     if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`sending request error! Status: ${response.status}`);
     }
     return response.text();
 }
-
 function displayQuestion(data) {
     if (data) {
         const object = JSON.parse(data);
@@ -34,15 +29,25 @@ function displayQuestion(data) {
         if (object.status && object.status === 'game_over') {
             checkScore(object.score);
             container.innerHTML = `
-            <div class="text-center text-xl bg-green-300">
-                <h1 class="title">Hey ${object.pseudoName}</h1>
-                <h3>${checkScore(object.score)}</h3>
-                <div class="score"> <h3>${object.score}</h3> </div>
-               <div class="buttons">
-                    <button id="correction">See Correction</button>
-                    <button id="restart">Restart Game</button>
-                </div> 
-            </div>`;
+             <div class="text-center flex flex-col align-center justify-center text-xl bg-[#EEF0E5]  w-[100vw] h-[100%]">
+        <div class="content m-auto flex flex-col align-start gap-16 bg-[#fff] shadow-xl	rounded-xl px-32 py-12">
+            <h1 class="mb-2 mt-0 text-5xl font-medium leading-tight text-primary">Hey <span
+                        class="font-bold text-[#a21caf]">${object.pseudoName}</span></h1>
+            <div class="score">
+                <h2 class="text-[#a21caf] font-bold">Score: <span class="text-[#000] ">${object.info.points}</span></h2>
+            </div>
+            <div class="correctAnswers">
+                <h2 class="text-[#a21caf] font-bold">Correct Answers: <span class="text-[#000] ">${object.info.incorrectAnswers}</span></h2>
+            </div>
+            <div class="incorrectAnswers">
+                <h2 class="text-[#a21caf] font-bold">Incorrect Answers: <span class="text-[#000] ">${object.info.correctAnswers}</span></h2>
+            </div>
+            <div class="buttons flex gap-8">
+                <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">See Correction</button>
+                <button id="restart" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Restart Game</button>
+            </div>
+        </div>
+    </div>`;
         } else {
             container.innerHTML = `
            <div class="header flex justify-between items-center p-4">
