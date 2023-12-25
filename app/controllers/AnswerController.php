@@ -19,4 +19,7 @@ class AnswerController {
         }
         return $result;
     }
+    public function wrongAnswer($answerId){
+        return $this->answerObject->fetchWrongAnswer($answerId);
+    }
 }

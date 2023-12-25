@@ -6,7 +6,7 @@ require_once '../../vendor/autoload.php';
 use App\Helpers\Functions;
 use App\Controllers\QuestionController;
 use App\Controllers\AnswerController;
-
+$array =[];
 if (!isset($_SESSION["count"])) {
     $_SESSION["count"] = 0;
 }
@@ -29,6 +29,7 @@ if (isset($_POST["answeredId"])) {
         $_SESSION["points"] += 10;
     } else {
         echo 0;
+        echo json_encode($object->wrongAnswer($_POST["answeredId"]));
         $_SESSION["incorrectAnswers"]++;
     }
 }

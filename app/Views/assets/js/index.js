@@ -13,15 +13,18 @@ function fetchQuestion() {
     fetch('../App/Controllers/controller.php', options)
         .then(handleResponse)
         .then(displayQuestion)
-        .catch(handleError);
+        .catch((error) => {console.log(error);});
 }
 function handleResponse(response) {
+    console.log("response,: ",response)
     if (!response.ok) {
         throw new Error(`sending request error! Status: ${response.status}`);
     }
     return response.text();
 }
 function displayQuestion(data) {
+    console.log("data,: ",data)
+
     if (data) {
         const object = JSON.parse(data);
         console.log(object);
@@ -91,7 +94,7 @@ function displayQuestion(data) {
         `;
             timing();
         }
-        document.querySelector("#restart").addEventListener("click", fetchQuestion);
+        document.querySelector("#restart")?.addEventListener("click", fetchQuestion);
     }
 }
 function handleError(error) {
