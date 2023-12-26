@@ -22,14 +22,17 @@ if (isset($_POST["takePseudoName"])) {
 }
 // check answers correction
 if (isset($_POST["answeredId"])) {
-    $object = new AnswerController();
-    $result = $object->isCorrectAnswer($_POST["questionFk"], $_POST["answeredId"]);
+    $answerController = new AnswerController();
+    $questionController = new QuestionController();
+    $result = $answerController->isCorrectAnswer($_POST["questionFk"], $_POST["answeredId"]);
+
     if ($result) {
         echo 1;
         $_SESSION["points"] += 10;
     } else {
         echo 0;
-        echo json_encode($object->wrongAnswer($_POST["answeredId"]));
+        $correctionArray = [$answerController->fetchCorrectAnswer($_POST["questionFk"]), $questionController->prepareCorrectionQuestion($_POST["questionFk"])];
+        echo json_encode($correctionArray);
         $_SESSION["incorrectAnswers"]++;
     }
 }

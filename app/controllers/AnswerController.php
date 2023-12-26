@@ -9,7 +9,7 @@ class AnswerController {
     public function __construct (){
         $this->answerObject = new Answer();
     }
-    public function isCorrectAnswer($questionFk, $answerId): bool
+    public function isCorrectAnswer($questionFk, $answerId)
     {
         $row = ($this->answerObject->isCorrectAnswer($questionFk));
         if($row["ID"] == $answerId){
@@ -19,7 +19,7 @@ class AnswerController {
         }
         return $result;
     }
-    public function wrongAnswer($answerId){
-        return $this->answerObject->fetchWrongAnswer($answerId);
+    public function fetchCorrectAnswer($questionFk){
+        return $this->answerObject->correctAnswer($questionFk);
     }
 }

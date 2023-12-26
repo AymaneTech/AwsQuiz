@@ -1,7 +1,7 @@
 const container = document.querySelector('#container');
-const nextQuestionButton = document.querySelector('#nextQuestion');
+const seeCorrection = document.querySelector('#seeCorrection');
 fetchQuestion();
-// window.addEventListener('load', fetchQuestion);
+
 function fetchQuestion() {
     const options = {
         method: 'POST',
@@ -13,29 +13,30 @@ function fetchQuestion() {
     fetch('../App/Controllers/controller.php', options)
         .then(handleResponse)
         .then(displayQuestion)
-        .catch((error) => {console.log(error);});
+        .catch((error) => {
+            console.log(error);
+        });
 }
+
 function handleResponse(response) {
-    console.log("response,: ",response)
     if (!response.ok) {
         throw new Error(`sending request error! Status: ${response.status}`);
     }
     return response.text();
 }
-function displayQuestion(data) {
-    console.log("data,: ",data)
 
+function displayQuestion(data) {
     if (data) {
         const object = JSON.parse(data);
-        console.log(object);
+        console.log(object)
         container.innerHTML = "";
         if (object.status && object.status === 'game_over') {
-            checkScore(object.score);
             container.innerHTML = `
              <div class="text-center flex flex-col align-center justify-center text-xl bg-[#EEF0E5]  w-[100vw] h-[100%]">
         <div class="content m-auto flex flex-col align-start gap-16 bg-[#fff] shadow-xl	rounded-xl px-32 py-12">
-            <h1 class="mb-2 mt-0 text-5xl font-medium leading-tight text-primary">Hey <span
-                        class="font-bold text-[#a21caf]">${object.pseudoName}</span></h1>
+            <h1 class="mb-2 mt-0 text-5xl font-medium leading-tight text-primary">Hey 
+            <span class="font-bold text-[#a21caf]">${object.pseudoName}</span></h1>
+            <p>${checkScore(object.score)}</p>
             <div class="score">
                 <h2 class="text-[#a21caf] font-bold">Score: <span class="text-[#000] ">${object.info.points}</span></h2>
             </div>
@@ -46,7 +47,7 @@ function displayQuestion(data) {
                 <h2 class="text-[#a21caf] font-bold">Incorrect Answers: <span class="text-[#000] ">${object.info.correctAnswers}</span></h2>
             </div>
             <div class="buttons flex gap-8">
-                <button type="button" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">See Correction</button>
+                <a id="seeCorrection" href="./correction.php" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">See Correction</a>
                 <button id="restart" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Restart Game</button>
             </div>
         </div>
@@ -97,18 +98,21 @@ function displayQuestion(data) {
         document.querySelector("#restart")?.addEventListener("click", fetchQuestion);
     }
 }
+
 function handleError(error) {
-    console.error('Error asahbi ');
+    console.error('Error asahbi '.error);
 }
-function checkScore (score){
-    if (score <= 20){
+
+function checkScore(score) {
+    if (score <= 20) {
         return "OOps Next time You will Win!!"
-    }else if (score <= 50){
+    } else if (score <= 50) {
         return "nice work, do better next time";
-    }else if (score <= 80){
+    } else if (score <= 80) {
         return "good work, you're the best";
-    }else if (score <= 90){
+    } else if (score <= 90) {
         return "batal, mhyeb";
     }
 
 }
+

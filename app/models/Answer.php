@@ -20,8 +20,8 @@ class Answer extends BaseModel
         parent::__set("columns" ,["ID", "answerStatus"]);
         return parent::findCorrectAnswer($id);
     }
-    public function fetchWrongAnswer($id){
-        $allResult = parent::findByColumnName("ID", $id);
-        return $allResult[0];
+    public function correctAnswer($questionFk){
+        parent::__set("columns" ,["*"]);
+        return parent::findCorrectAnswer($questionFk);
     }
 }

@@ -1,5 +1,6 @@
 let answerId = document.querySelectorAll(".answer-item");
 let counter = 0;
+var correctionArray = [];
 
 function questionAnswered(id, questionId) {
     counter++;
@@ -13,12 +14,15 @@ function questionAnswered(id, questionId) {
     fetch(`../App/Controllers/controller.php`, option)
         .then(response => response.text())
         .then(response => {
-            console.log(response)
-                let Nothification = new Notyf();
+                let Notification = new Notyf();
             if (response === "1") {
-                Nothification.success('Correct Answer');
+                Notification.success('Correct Answer');
             } else {
-                Nothification.error('Incorrect Answer');
+                let data = response.slice(1);
+                data = JSON.parse(data);
+                correctionArray.push(data);
+                localStorage.setItem("correction", JSON.stringify(correctionArray));
+                Notification.error('Incorrect Answer');
             }
         })
         .catch(error => console.error('Error:', error));

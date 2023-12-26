@@ -50,6 +50,7 @@ abstract class BaseModel
             echo "i am in model class ===> <br>" . $e->getMessage();
         }
     }
+
     protected function findCorrectAnswer($questionFk)
     {
         try {
@@ -57,9 +58,13 @@ abstract class BaseModel
             $stmt = Database::connect()->prepare("SELECT {$columns} FROM {$this->tableName} where questionFk = :questionFk and answerStatus = 1");
             $stmt->bindParam(':questionFk', $questionFk);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }  catch (PDOException $e) {
-            echo "come and fix me in base model => ".$e->getMessage();
+            if ($stmt->rowCount() > 0) {
+                return $stmt->fetch(PDO::FETCH_ASSOC);
+            }else  {
+                return "no result from database";
+            }
+        } catch (PDOException $e) {
+            echo "come and fix me in base model => " . $e->getMessage();
         }
     }
 

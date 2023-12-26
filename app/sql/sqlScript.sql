@@ -24,3 +24,7 @@ change column answerID  ID int;
 
 alter table question
     change column questionID  ID int;
+
+alter table answer add column answerDescription text;
+
+alter table question drop column questionDesc

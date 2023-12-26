@@ -23,5 +23,8 @@ class QuestionController
             'answerArray' => $this->questionObject->__get("answers"),
         ];
     }
+    public function prepareCorrectionQuestion($questionID){
+            return $this->questionObject->fetchCorrectionQuestions($questionID);
+    }
 }
 

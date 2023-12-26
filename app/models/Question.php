@@ -34,12 +34,15 @@ class Question extends BaseModel
         $row = $this->fetchRandom();
         $this->questionID = $row["ID"];
         $this->questionText = $row["questionText"];
-        $this->questionDesc = $row["questionDesc"];
     }
     public function fetchAnswers(){
         parent::__construct("answer");
         parent::__set("columns", ["ID", "answerText", "questionFk"]);
         $this->answers = $this->findByColumnName("questionFK", $this->questionID);
+    }
+    public function fetchCorrectionQuestions($questionID){
+        $result = parent::findByColumnName("ID", $questionID);
+        return $result[0];
     }
 }
 
