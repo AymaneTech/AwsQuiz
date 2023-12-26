@@ -35,16 +35,16 @@ function displayQuestion(data) {
              <div class="text-center flex flex-col align-center justify-center text-xl bg-[#EEF0E5]  w-[100vw] h-[100%]">
         <div class="content m-auto flex flex-col align-start gap-16 bg-[#fff] shadow-xl	rounded-xl px-32 py-12">
             <h1 class="mb-2 mt-0 text-5xl font-medium leading-tight text-primary">Hey 
-            <span class="font-bold text-[#a21caf]">${object.pseudoName}</span></h1>
-            <p>${checkScore(object.score)}</p>
+            <span class="font-bold text-[#a21caf]">${object.info.pseudoName}</span></h1>
+            <p>${checkScore(object.info.points)}</p>
             <div class="score">
                 <h2 class="text-[#a21caf] font-bold">Score: <span class="text-[#000] ">${object.info.points}</span></h2>
             </div>
-            <div class="correctAnswers">
-                <h2 class="text-[#a21caf] font-bold">Correct Answers: <span class="text-[#000] ">${object.info.incorrectAnswers}</span></h2>
-            </div>
             <div class="incorrectAnswers">
-                <h2 class="text-[#a21caf] font-bold">Incorrect Answers: <span class="text-[#000] ">${object.info.correctAnswers}</span></h2>
+                <h2 class="text-[#a21caf] font-bold">Incorrect Answers: <span class="text-[#000] ">${10 - correctionArray.length}</span></h2>
+            </div>
+            <div class="correctAnswers">
+                <h2 class="text-[#a21caf] font-bold">Correct Answers: <span class="text-[#000] ">${correctionArray.length}</span></h2>
             </div>
             <div class="buttons flex gap-8">
                 <a id="seeCorrection" href="./correction.php" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">See Correction</a>
@@ -56,7 +56,7 @@ function displayQuestion(data) {
             container.innerHTML = `
            <div class="header flex justify-between items-center p-4">
                 <div></div>
-                <div class="question bg-[#F4CE14] text-white font-bold text-lgk text-center w-[50%] h-12 rounded-xl flex items-center justify-center py-16 px-2">
+                <div class="question bg-purple-700 text-white font-bold text-lgk text-center w-[50%] h-12 rounded-xl flex items-center justify-center py-16 px-2">
                     <h2 class="questionContent">${object.questionText}</h2>
                 </div>
                 <div class="bg-[#45474B] text-white p-8 rounded-xl text-white">
@@ -71,22 +71,22 @@ function displayQuestion(data) {
                 </div>
            </div>
             <div class="answers-items flex flex-wrap justify-between p-4">
-    <div onclick="questionAnswered(${object.answerArray[0].ID}, ${object.questionID}, 0)" id="answerId" class="answer-item bg-[#495E57] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-red-400 hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
+    <div onclick="questionAnswered(${object.answerArray[0].ID}, ${object.questionID}, 0)" id="answerId" class="answer-item bg-white text-[#222] font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-purple-700 hover:text-white hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
         <h3 class="answerContent">
         ${object.answerArray[0].answerText}
         </h3>
     </div>
-    <div onclick="questionAnswered(${object.answerArray[1].ID}, ${object.questionID}, 1)" id="answerId" class="answer-item bg-[#495E57] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-red-400 hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
+    <div onclick="questionAnswered(${object.answerArray[1].ID}, ${object.questionID}, 1)" id="answerId" class="answer-item bg-white text-[#222] font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-purple-700 hover:text-white hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
         <h3 class="answerContent">
         ${object.answerArray[1].answerText}
         </h3>
     </div>
-    <div onclick="questionAnswered(${object.answerArray[2].ID}, ${object.questionID}, 2)" id="answerId" class="answer-item bg-[#495E57] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-red-400 hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
+    <div onclick="questionAnswered(${object.answerArray[2].ID}, ${object.questionID}, 2)" id="answerId" class="answer-item bg-white text-[#222] font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-purple-700 hover:text-white hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
         <h3 class="answerContent">
         ${object.answerArray[2].answerText}
         </h3>
     </div>
-    <div onclick="questionAnswered(${object.answerArray[3].ID}, ${object.questionID}, 3)" id="answerId" class="answer-item bg-[#495E57] text-white font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-red-400 hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
+    <div onclick="questionAnswered(${object.answerArray[3].ID}, ${object.questionID}, 3)" id="answerId" class="answer-item bg-white text-[#222] font-bold text-center w-[40%] h-24 rounded-xl m-2 pt-5 hover:bg-purple-700 hover:text-white hover:transition-transform hover:transform hover:scale-105 hover:shadow-lg">
         <h3 class="answerContent">
             ${object.answerArray[3].answerText}
         </h3>
@@ -95,7 +95,11 @@ function displayQuestion(data) {
         `;
             timing();
         }
-        document.querySelector("#restart")?.addEventListener("click", fetchQuestion);
+        document.querySelector("#restart")?.addEventListener("click", ()=>{
+            correctionArray = [];
+            localStorage.removeItem("correction");
+            fetchQuestion();
+        });
     }
 }
 
