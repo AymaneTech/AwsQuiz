@@ -41,10 +41,10 @@ function displayQuestion(data) {
                 <h2 class="text-[#a21caf] font-bold">Score: <span class="text-[#000] ">${object.info.points}</span></h2>
             </div>
             <div class="incorrectAnswers">
-                <h2 class="text-[#a21caf] font-bold">Incorrect Answers: <span class="text-[#000] ">${10 - correctionArray.length}</span></h2>
+                <h2 class="text-[#a21caf] font-bold">Correct Answers: <span class="text-[#000] ">${10 - correctionArray.length}</span></h2>
             </div>
             <div class="correctAnswers">
-                <h2 class="text-[#a21caf] font-bold">Correct Answers: <span class="text-[#000] ">${correctionArray.length}</span></h2>
+                <h2 class="text-[#a21caf] font-bold">Incorrect Answers: <span class="text-[#000] ">${correctionArray.length}</span></h2>
             </div>
             <div class="buttons flex gap-8">
                 <a id="seeCorrection" href="./correction.php" class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">See Correction</a>
@@ -53,6 +53,7 @@ function displayQuestion(data) {
         </div>
     </div>`;
         } else {
+            console.log(object);
             container.innerHTML = `
            <div class="header flex justify-between items-center p-4">
                 <div></div>

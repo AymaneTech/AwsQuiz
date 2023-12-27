@@ -67,12 +67,12 @@ abstract class BaseModel
             echo "come and fix me in base model => " . $e->getMessage();
         }
     }
-
-    protected function fetchRandom()
+    protected function fetchRandom($column, $array)
     {
         try {
             $columns = implode(',', $this->columns);
-            $stmt = Database::connect()->query("SELECT {$columns} from {$this->tableName} order by rand() limit 1");
+            $checkArray = (!empty($array)) ? "where {$column} not in (" . implode(',', $array) . ")" : "";
+            $stmt = Database::connect()->query("SELECT {$columns} from {$this->tableName} {$checkArray} order by rand() limit 1");
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             die("i am in model class ===> <br>" . $e->getMessage());

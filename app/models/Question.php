@@ -30,8 +30,8 @@ class Question extends BaseModel
     {
         return parent::fetchAll();
     }
-    public function fetchRandomQuestion(){
-        $row = $this->fetchRandom();
+    public function fetchRandomQuestion($column,$array){
+        $row = $this->fetchRandom($column, $array);
         $this->questionID = $row["ID"];
         $this->questionText = $row["questionText"];
     }
