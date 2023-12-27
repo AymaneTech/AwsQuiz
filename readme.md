@@ -35,15 +35,15 @@ run the project
 
 ## Website preview
 
-![Screenshot (50)](App/preview/screenshots/name.png)
+![Screenshot (50)](./App/preview/screenshots/name.png)
 
-![Screenshot (51)](App/preview/screenshots/welcome.png)
+![Screenshot (51)](./App/preview/screenshots/welcome.png)
 
-![Screenshot (52)](App/preview/screenshots/questions.png)
+![Screenshot (52)](./App/preview/screenshots/questions.png)
 
-![Screenshot (53)](App/preview/screenshots/score.png)
+![Screenshot (53)](./App/preview/screenshots/score.png)
 
-![Screenshot (53)](App/preview/screenshots/answers.png)
+![Screenshot (53)](./App/preview/screenshots/answers.png)
 
 ## Classes Design
 
