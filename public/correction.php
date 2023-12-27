@@ -10,11 +10,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Aws Quiz | Correction</title>
 </head>
-<body class="bg-white">
+<body class="bg-gray-100 overflow-x-hidden">
 <div id="correction-container"
-     class="m-10 p-10 h-[100%] correction-container flex flex-col justify-center align-center pt-8 px-32">
-    <h1 class="main-title text-[#222] text-6xl text-center mb-8 font-bold">Correction</h1>
-    <div class="content-center flex flex-col gap-8" id="elements-parent">
+     class=" m-4 p-10 flex flex-col px-32">
+    <div class="section-title">
+        <h1 class="main-title text-[#222] text-7xl text-center mb-8 font-bold">Correction</h1>
+    </div>
+    <div class="m-auto flex flex-col gap-4" id="elements-parent">
 
     </div>
 </div>

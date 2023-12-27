@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['pseudoName'])){
+if (!isset($_SESSION['pseudoName'])) {
     header('location: ./index.php');
 }
 ?>
@@ -18,10 +18,12 @@ if (!isset($_SESSION['pseudoName'])){
     <title>Document</title>
 </head>
 
-<body>
-<section id="container" class="container h-[100vh] flex flex-col justify-between align-center">
+<body class="bg-gray-200">
+<section id="container" class="container m-auto py-4 h-[100vh] flex flex-col justify-between align-center">
+
 
 </section>
+
 <script src="../App/Views/assets/js/index.js"></script>
 <script src="../App/Views/assets/js/logic.js"></script>
 <script src="../App/Views/assets/js/timer.js"></script>
@@ -29,5 +31,4 @@ if (!isset($_SESSION['pseudoName'])){
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 </body>
-
 </html>

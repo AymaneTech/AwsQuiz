@@ -28,3 +28,15 @@ function questionAnswered(id, questionId) {
         .catch(error => console.error('Error:', error));
     fetchQuestion();
 }
+function progressbar(index) {
+    let progressFILL = document.querySelector('.progress-fill');
+    let progressTEXT = document.querySelector('.progress-text');
+    let percentage = (index * 10) + '%';
+
+    progressFILL.style.width = percentage;
+    progressTEXT.textContent = percentage;
+
+    // Additional logic to update the page number
+    let pageElement = document.getElementById('page');
+    pageElement.textContent = (index + 1) + '/10';
+}
