@@ -35,19 +35,19 @@ run the project
 
 ## Website preview
 
-![Screenshot (50)](./App/preview/screenshots/name.png)
+![Screenshot (50)](https://github.com/AymaneTech/AwsQuiz/blob/main/app/preview/diagrams/name.png)
 
-![Screenshot (51)](./App/preview/screenshots/welcome.png)
+![Screenshot (51)](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/screenshots/welcome.png)
 
-![Screenshot (52)](./App/preview/screenshots/questions.png)
+![Screenshot (52)](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/screenshots/questions.png)
 
-![Screenshot (53)](./App/preview/screenshots/score.png)
+![Screenshot (53)](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/screenshots/score.png)
 
-![Screenshot (53)](./App/preview/screenshots/answers.png)
+![Screenshot (53)](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/screenshots/answers.png)
 
 ## Classes Design
 
-![Aws Quiz](App/preview/diagrams/models.png)
+![Aws Quiz](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/diagrams/models.png)
 
 
 
@@ -55,11 +55,11 @@ run the project
 
 Diagramme de Classes.
 
-![Aws Quiz diagrammde de case d'utilisation](App/preview/diagrams/class.png)
+![Aws Quiz diagrammde de case d'utilisation](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/diagrams/class.png)
 
 Diagramme de Cas D'utilisation.
 
-![Aws Quiz diagrammde de case d'utilisation](App/preview/diagrams/usecase.png)
+![Aws Quiz diagrammde de case d'utilisation](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/diagrams/usecase.png)
 
 Diagramme de Sequence.
-![Aws Quiz diagrammde de case d'utilisation](App/preview/diagrams/sequence.png)
+![Aws Quiz diagrammde de case d'utilisation](https://github.com/AymaneTech/AwsQuiz/blob/main/App/preview/diagrams/sequence.png)
